@@ -1,4 +1,6 @@
-REF To TriforceAFL: https://github.com/nccgroup/TriforceAFL.git
+Combination of following tools
+(1)TriforceAFL: https://github.com/nccgroup/TriforceAFL.git
+(2)afl: https://github.com/jdbirdwell/afl.git
 
 <ProjectTriforce>
 
