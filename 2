@@ -1,0 +1,131 @@
+[*] Checking for the ability to compile x86 code...
+[+] Everything seems to be working, ready to compile.
+cc -O3 -funroll-loops -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign -DAFL_PATH=\"/usr/local/lib/afl\" -DDOC_PATH=\"/usr/local/share/doc/afl\" -DBIN_PATH=\"/usr/local/bin\" -DVERSION=\"2.06b\" afl-fuzz.c -o afl-fuzz -ldl
+[*] Testing the CC wrapper and instrumentation output...
+unset AFL_USE_ASAN AFL_USE_MSAN; AFL_QUIET=1 AFL_INST_RATIO=100 AFL_PATH=. ./afl-gcc -O3 -funroll-loops -Wall -D_FORTIFY_SOURCE=2 -g -Wno-pointer-sign -DAFL_PATH=\"/usr/local/lib/afl\" -DDOC_PATH=\"/usr/local/share/doc/afl\" -DBIN_PATH=\"/usr/local/bin\" -DVERSION=\"2.06b\" test-instr.c -o test-instr -ldl
+echo 0 | ./afl-showmap -m none -q -o .test-instr0 -- ./test-instr
+echo 1 | ./afl-showmap -m none -q -o .test-instr1 -- ./test-instr
+[+] All right, the instrumentation seems to be working!
+[+] All done! Be sure to review README - it's pretty short and useful.
+cd qemu_mode && ./build_qemu_support.sh
+Install prefix    /usr/local
+BIOS directory    /usr/local/share/qemu
+binary directory  /usr/local/bin
+library directory /usr/local/lib
+module directory  /usr/local/lib/qemu
+libexec directory /usr/local/libexec
+include directory /usr/local/include
+config directory  /usr/local/etc
+local state directory   /usr/local/var
+Manual directory  /usr/local/share/man
+ELF interp prefix /usr/gnemul/qemu-%M
+Source path       /home/zyw/experiment/TriforceAFL/qemu_mode/qemu
+C compiler        cc
+Host C compiler   cc
+C++ compiler      c++
+Objective-C compiler cc
+ARFLAGS           rv
+CFLAGS            -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -g -O3
+QEMU_CFLAGS       -I$(SRC_PATH)/pixman/pixman -I$(BUILD_DIR)/pixman/pixman -I$(SRC_PATH)/dtc/libfdt -fPIE -DPIE -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Wstrict-prototypes -Wredundant-decls -Wall -Wundef -Wwrite-strings -Wmissing-prototypes -fno-strict-aliasing -fno-common  -Wendif-labels -Wmissing-include-dirs -Wempty-body -Wnested-externs -Wformat-security -Wformat-y2k -Winit-self -Wignored-qualifiers -Wold-style-declaration -Wold-style-definition -Wtype-limits -fstack-protector-strong
+LDFLAGS           -Wl,--warn-common -Wl,-z,relro -Wl,-z,now -pie -m64 -g 
+make              make
+install           install
+python            python -B
+smbd              /usr/sbin/smbd
+module support    no
+host CPU          x86_64
+host big endian   no
+target list       mips-softmmu
+tcg debug enabled no
+gprof enabled     no
+sparse enabled    no
+strip binaries    yes
+profiler          no
+static build      no
+pixman            internal
+SDL support       no
+GTK support       no
+VTE support       no
+curses support    yes
+curl support      no
+mingw32 support   no
+Audio drivers     oss
+Block whitelist (rw) 
+Block whitelist (ro) 
+VirtFS support    no
+VNC support       yes
+VNC TLS support   no
+VNC SASL support  no
+VNC JPEG support  no
+VNC PNG support   no
+VNC WS support    no
+xen support       no
+brlapi support    no
+bluez  support    no
+Documentation     yes
+GUEST_BASE        yes
+PIE               yes
+vde support       no
+netmap support    no
+Linux AIO support no
+ATTR/XATTR support yes
+Install blobs     yes
+KVM support       yes
+RDMA support      no
+TCG interpreter   no
+fdt support       yes
+preadv support    yes
+fdatasync         yes
+madvise           yes
+posix_madvise     yes
+sigev_thread_id   yes
+uuid support      no
+libcap-ng support no
+vhost-net support yes
+vhost-scsi support yes
+Trace backends    nop
+spice support     no
+rbd support       no
+xfsctl support    no
+nss used          no
+libusb            no
+usb net redir     no
+OpenGL support    yes
+libiscsi support  no
+libnfs support    no
+build guest agent yes
+QGA VSS support   no
+seccomp support   no
+coroutine backend ucontext
+coroutine pool    yes
+GlusterFS support no
+Archipelago support no
+gcov              gcov
+gcov enabled      no
+TPM support       yes
+libssh2 support   no
+TPM passthrough   yes
+QOM debugging     yes
+vhdx              no
+Quorum            no
+lzo support       yes
+snappy support    no
+bzip2 support     no
+NUMA host support no
+make[1]: Entering directory '/home/zyw/experiment/TriforceAFL/qemu_mode/qemu'
+  GEN   config-host.h
+make  all-recursive
+Making all in pixman
+make[4]: Nothing to be done for 'all'.
+Making all in demos
+make[4]: Nothing to be done for 'all'.
+Making all in test
+make[4]: Nothing to be done for 'all'.
+	CHK version_gen.h
+  GEN   trace/generated-tracers.h
+  GEN   trace/generated-tcg-tracers.h
+  GEN   trace/generated-helpers-wrappers.h
+  GEN   trace/generated-helpers.h
+  GEN   mips-softmmu/config-target.h
+  GEN   trace/generated-helpers.c
+make[1]: Leaving directory '/home/zyw/experiment/TriforceAFL/qemu_mode/qemu'
